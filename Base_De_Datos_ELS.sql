@@ -5,6 +5,8 @@ show tables;
 /*alter table users drop column name;
 alter table personal_access_tokens drop column name;*/
 
+/*Comentario de prueba*/
+
 create table backoffice(
 	codigo int not null auto_increment primary key,
     contrasenia varchar(255) not null,
