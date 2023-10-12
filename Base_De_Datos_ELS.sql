@@ -1,11 +1,11 @@
+drop database scripttribyte;
+create database scripttribyte;
 use scripttribyte;
 show tables;
 
 /*Para modificar las migraciones ya que los nombres de usuarios se hallan en otra tabla*/
 /*alter table users drop column name;
 alter table personal_access_tokens drop column name;*/
-
-/*Comentario de prueba*/
 
 create table backoffice(
 	codigo int not null auto_increment primary key,
@@ -320,6 +320,7 @@ create table vehiculo_lote_destino(
     foreign key (docDeIdentidad) references choferes(docDeIdentidad)
 );
 
+/*Datos de prueba para transacciones*/
 INSERT INTO categorias (tipo) VALUES ("A");
 INSERT INTO categorias (tipo) VALUES ("B");
 INSERT INTO categorias (tipo) VALUES ("C");
@@ -348,6 +349,18 @@ INSERT INTO departamentos (nombre) VALUES ("Colonia");
 INSERT INTO departamentos (nombre) VALUES ("Rio Negro");
 INSERT INTO departamentos (nombre) VALUES ("Lavalleja");
 INSERT INTO departamentos (nombre) VALUES ("Cerro Largo");
+
+INSERT INTO almacenes (idAlmacen, capacidad, direccion, idDepartamento) VALUES (1,200,"18 de Julio",1);
+
+INSERT INTO turnos (idTurno, horaInicio, horaFinal) VALUES (1,"06:00:00","12:00:00");
+
+INSERT INTO backoffice(codigo, contrasenia) VALUES (1,"contraseñasegura");
+
+INSERT INTO tipoArticulo(idTipoArticulo, tipo) VALUES (1,"Fragil");
+
+INSERT INTO destinos(idDestino, direccion, idDepartamento) VALUES (1,"8 de Octubre",1);
+
+INSERT INTO lotes(idLote, cantidadPaquetes, idDestino, idAlmacen) VALUES (30, 25, 1, 1);
 
 /*Usuarios y claves del sistema*/
 CREATE USER 'BackofficeELS' IDENTIFIED BY 'Backoffice2023ELS';
@@ -419,7 +432,7 @@ COMMIT;
 START TRANSACTION;
 
 INSERT INTO usuarios (docDeIdentidad, nombre, apellido, telefono, direccion) VALUES (12345670, 'Pepito', 'Perez', 1234567890, 'Peru 2020');
-INSERT INTO users (email, password) VALUES ('usuario@usuario.com', 1122334455); 
+INSERT INTO users (email, password) VALUES ('usuario1@usuario.com', 1122334455); 
 INSERT INTO user_usuario (id, docDeIdentidad) VALUES (2,12345670);
 INSERT INTO gerentes (docDeIdentidad, idAlmacen, idTurno) VALUES (12345670, 1, 1);
 
@@ -432,8 +445,6 @@ INSERT INTO usuarios (docDeIdentidad, nombre, apellido, telefono, direccion) VAL
 INSERT INTO users (email, password) VALUES ('usuario2@usuario.com', 1122334455); 
 INSERT INTO user_usuario (id, docDeIdentidad) VALUES (3,12345679);
 INSERT INTO administradores (docDeIdentidad, backoffice) VALUES (12345679, 1);
-
-ROLLBACK;
 
 COMMIT;
 
