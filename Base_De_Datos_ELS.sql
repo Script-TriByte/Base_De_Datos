@@ -362,6 +362,8 @@ INSERT INTO destinos(idDestino, direccion, idDepartamento) VALUES (1,"8 de Octub
 
 INSERT INTO lotes(idLote, cantidadPaquetes, idDestino, idAlmacen) VALUES (30, 25, 1, 1);
 
+INSERT INTO articulos(idArticulo, nombre, anioCreacion) VALUES (1,"Jabon",2018);
+
 /*Usuarios y claves del sistema*/
 CREATE USER 'BackofficeELS' IDENTIFIED BY 'Backoffice2023ELS';
 CREATE USER 'APITransito' IDENTIFIED BY 'Transito2023ELS';
